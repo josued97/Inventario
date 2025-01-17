@@ -18,6 +18,12 @@ public class ProductoRepository : IProductoRepository
         var listarProductos = _context.Productos.ToListAsync();
         return await listarProductos;
     }
+    
+    public async Task<Productos> BuscarPorIdAsync(int id)
+    {
+        var producto =  _context.Productos.FirstAsync(x=>x.Id == id);
+        return await producto;
+    }
 
     public async Task<Productos> InsertarAsync(Productos Producto)
     {

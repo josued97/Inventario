@@ -32,6 +32,11 @@ public class ProductoService : IProductoService
 
         return listProductos;
     }
+    
+    public async Task<Productos> BuscarPorId(int id)
+    {
+        return await _repository.BuscarPorIdAsync(id);
+    }
 
     public async Task ValidarQueNoExistaProducto(Productos producto)
     {
@@ -51,5 +56,16 @@ public class ProductoService : IProductoService
 
         if (!productoResponse.Any())
             ProductoNoExisteException.Throw(producto.Nombre);
+    }
+
+    public async Task<Productos> ActualizarProducto(Productos productoActualizar)
+    {
+        var productoResult = await _repository.BuscarPorIdAsync(productoActualizar.Id);
+
+        productoResult = productoActualizar;
+
+        var result = await _repository.ActualizarAsync(productoResult);
+
+        return result;
     }
 }

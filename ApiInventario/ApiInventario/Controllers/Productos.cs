@@ -56,7 +56,7 @@ namespace ApiInventario.Controllers
         }
 
         [HttpPost("Actualizar")]
-        public async Task<IActionResult> ActualizarProducto(CrearProductoDto request)
+        public async Task<IActionResult> ActualizarProducto(ActualizarProductoDto request)
         {
             try
             {
